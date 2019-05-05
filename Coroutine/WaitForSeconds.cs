@@ -3,16 +3,16 @@ using System.Collections;
 
 namespace Coroutine
 {
-    public class WaitForMilliSeconds : IEnumerator
+    public class WaitForSeconds : IEnumerator
     {
         private DateTime _targetTime;
-        private int _waitTime = 0;
+        private double _waitTime = 0;
 
         public object Current { get; set; }
 
-        public WaitForMilliSeconds(int millisecond)
+        public WaitForSeconds(double second)
         {
-            _waitTime = millisecond;
+            _waitTime = second;
             Reset();
         }
 
@@ -28,7 +28,7 @@ namespace Coroutine
         public void Reset()
         {
             Current = null;
-            _targetTime = DateTime.Now.AddMilliseconds(_waitTime);
+            _targetTime = DateTime.Now.AddSeconds(_waitTime);
         }
     }
 }

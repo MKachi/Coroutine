@@ -33,20 +33,19 @@ namespace Coroutine
         {
             for (int i = 0; i < _coroutines.Count; ++i)
             {
-                Coroutine coroutine = _coroutines[i];
-                if (!(coroutine.Routine is null))
+                if (!(_coroutines[i].Action is null))
                 {
-                    if (coroutine.Routine.MoveNext())
+                    if (_coroutines[i].Action.MoveNext())
                     {
-                        coroutine.Action = null;
+                        _coroutines[i].Action = null;
                     }
                 }
                 else
                 {
-                    coroutine.Routine.MoveNext();
-                    if (!(coroutine.Routine.Current is null))
+                    _coroutines[i].Routine.MoveNext();
+                    if (!(_coroutines[i].Routine.Current is null))
                     {
-                        coroutine.Action = coroutine.Routine.Current as IEnumerator;
+                        _coroutines[i].Action = _coroutines[i].Routine.Current as IEnumerator;
                     }
                 }
             }
